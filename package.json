@@ -1,0 +1,42 @@
+{
+  "name": "lili",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "mystart": "webpack-dev-server --config webpack/webpack.config.js",
+    "start": "webpack-dashboard -- webpack-dev-server --config webpack/dev.config.js --hot",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start1": "node bin/dev-server",
+    "build": "webpack --config webpack/prod.config.js",
+    "mybuild": "webpack --config webpack/webpack.config.js"   
+  },
+  "author": "lixiaoli",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.1",
+    "html-loader": "^3.0.1",
+    "html-webpack-plugin": "^5.5.0",
+    "sass": "^1.45.0",
+    "sass-loader": "^12.4.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dashboard": "^3.3.6",
+    "webpack-dev-server": "^4.6.0"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.16.5",
+    "@babel/preset-react": "^7.16.5",
+    "antd": "^4.17.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack-merge": "^5.8.0"
+  }
+}
