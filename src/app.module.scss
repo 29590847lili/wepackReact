@@ -1,4 +1,24 @@
 .app{
     color: #1890ff;
 }
+.content{
+    height: 100%;
+    .header{
+        height: 60px;
+        background-color: cadetblue;
+    }
+    .body{
+        display: flex;
+        .leftList{
+            width: 350px;
+            height: calc(100vh - 60px);
+            background-color: aliceblue;
+        }
+        .right{
+            background-color: cornflowerblue;
+            flex:1
+        }
+    }
+    
+}
 

@@ -1,7 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const HappyPack = require('happypack');
+const os = require('os');
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
+
 module.exports = {
+  optimization: {
+    splitChunks: {
+      // 自动提取所有公共模块到单独 bundle
+      chunks: 'all'
+    }
+  },
     mode:'development',
     entry: {
         open: path.resolve(__dirname, '../src/exampleEntry/open.jsx'), // 指定多入口
@@ -19,6 +29,13 @@ module.exports = {
       },
     module: {
         rules: [
+          {
+            test: /\.js$/,
+            //把对.js 的文件处理交给id为happyBabel 的HappyPack 的实例执行
+            use: 'happypack/loader?id=happyBabel',
+            //排除node_modules 目录下的文件
+            exclude: /node_modules/
+          },
             {
                 test: /\.html$/i,
                 loader: "html-loader",
@@ -80,6 +97,16 @@ module.exports = {
 　　　　　　 inject: true,
             filename: 'open.html', // 此处新增
             chunks: ['open']
-　　　　 })
+　　　　 }),
+        new HappyPack({
+          //用id来标识 happypack处理那里类文件
+          id: 'happyBabel',
+          //如何处理  用法和loader 的配置一样
+          loaders: ['babel-loader?cacheDirectory'],
+          //共享进程池
+          threadPool: happyThreadPool,
+          //允许 HappyPack 输出日志
+          verbose: true,
+        })
 　　 ]
 }
